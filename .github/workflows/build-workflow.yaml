@@ -10,7 +10,8 @@ on:
 
 jobs:
   build:
-    runs-on: [ "self-hosted" ]  # You can change this to another runner if needed
+    runs-on:
+     - self-hosted   # You can change this to another runner if needed
 
     steps:
       # Checkout the code from the repository
