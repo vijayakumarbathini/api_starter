@@ -30,7 +30,7 @@ jobs:
       # Build the Docker image
       - name: Build Docker image
         run: |
-          docker build --build-arg firstName=${{ secrets.FIRST_NAME }} -t api_starter .
+          docker build --build-arg firstName="${{ vars.FIRST_NAME }}" --build-arg lastName="${{ vars.LAST_NAME }}" -t api_starter .
 
     #   Push Docker image to Docker Hub (if desired)
       - name: Log in to Docker Hub
@@ -52,6 +52,6 @@ jobs:
 #          --name my-springboot-container api_starter
 
 #      # Optional: Test if the container is up and running (basic health check)
-#      - name: Health Check for Running Container
-#        run: |
-#          docker exec my-springboot-container curl --fail http://localhost:8080/actuator/health || exit 1
+      - name: Health Check for Running Container
+        run: |
+          docker exec ${{ secrets.DOCKER_USERNAME }}/api_starter curl --fail http://localhost:8080/status || exit 1

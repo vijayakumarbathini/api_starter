@@ -11,6 +11,7 @@ FROM openjdk:17-jdk-slim
 
 WORKDIR /app
 COPY --from=builder /app/target/api_starter-0.0.1-SNAPSHOT.jar app.jar
+RUN ls -al /app
 
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
