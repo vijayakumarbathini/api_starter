@@ -1,4 +1,4 @@
-name: Build and Deploy Docker Image
+name: Build and Deploy Docker Image with self hosted runner
 
 on:
   push:
@@ -17,10 +17,6 @@ jobs:
       # Checkout the code from the repository
       - name: Checkout code
         uses: actions/checkout@v2
-
-      # Set up Docker Buildx (for multi-platform support if needed)
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
 
 #      # Cache Docker layers to speed up builds
 #      - name: Cache Docker layers
