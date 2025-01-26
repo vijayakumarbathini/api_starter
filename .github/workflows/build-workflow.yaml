@@ -31,6 +31,13 @@ jobs:
       - name: Build Docker image
         run: |
           docker build --build-arg firstName="${{ vars.FIRST_NAME }}" --build-arg lastName="${{ vars.LAST_NAME }}" -t api_starter .
+       # Run Docker container with environment variables passed at runtime
+      - name: Run Docker container with environment variables
+        run: |
+              docker run -d -p 8080:8080 \
+              -e firstName="${{ vars.FIRST_NAME }}" \
+              -e lastName="${{ vars.LAST_NAME }}" \
+              --name api_starter_container ${{ secrets.DOCKER_USERNAME }}/api_starter
 
     #   Push Docker image to Docker Hub (if desired)
       - name: Log in to Docker Hub
@@ -54,4 +61,4 @@ jobs:
 #      # Optional: Test if the container is up and running (basic health check)
       - name: Health Check for Running Container
         run: |
-          docker exec ${{ secrets.DOCKER_USERNAME }}/api_starter curl --fail http://localhost:8080/status || exit 1
+          docker exec api_starter_container curl --fail http://localhost:8080/status || exit 1
