@@ -14,6 +14,6 @@ public class ApiService {
     public String getUserDetails() {
         String firstName = environment.getProperty("firstName");
         String lastName = environment.getProperty("lastName");
-        return "User Details: First Name: " + firstName + " Last Name: "+ lastName;
+        return "User Details: First Name Test: " + firstName + " Last Name: "+ lastName;
     }
 }
